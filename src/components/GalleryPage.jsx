@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CardContainer from './CardContainer'
 import Card from './Card.jsx'
 import FilterControls from './FilterControls.jsx'
-import RainApi from './RainApi.jsx'
+import PageRunner from './PageRunner.jsx'
 ///this is intended to hold a filter and a container
 
 
@@ -29,7 +29,7 @@ export default function GalleryPage({galleryData}) {
     for(let i=0;i<galleryData.length;i++){
       if(galleryData[i][filterType].toLowerCase().includes(newFilter.toLowerCase())){
         filteredCards.push( <Card key = {galleryData[i].Title} item = {galleryData[i]} />)
-        console.log("text filter = true")
+ 
     }
   
   }
@@ -38,9 +38,9 @@ export default function GalleryPage({galleryData}) {
       filteredCards.push( <Card key = {galleryData[i].Title} item = {galleryData[i]} />)
       
     }
-    console.log("text filter = false")
+
   }
-  console.log("filter cards called and filtered cards = ", filteredCards)
+ 
   setCards(filteredCards) 
 }
 
@@ -50,11 +50,11 @@ function filterTypeUpdate(newValue){
 }
 // filter controls can call the filter cards function and will pass it a new filter value
   return (
-    <div className='flex flex-col items-center bg-white  p-5 mx-auto w-5/6 justify-center align-middle'>
-    
+    <PageRunner>
+
     <FilterControls applyingTextFilter = {filterCards} filterOptions={["Title","Breed"]} applyingFilterOptions = {filterTypeUpdate}/>
 
     <CardContainer cards = {cards}/>
-    </div>
+    </PageRunner>
   )
 }

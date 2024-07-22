@@ -1,0 +1,18 @@
+    {
+      "buildSoilHydrometer":{
+        "makeSensor" : false,
+        "programMicrocontroller" : false
+      },
+      
+      "dataDisplay":{
+        "importSoilWetness" : false,
+        "programMicrocontroller" : false
+      },
+      
+      "buildDataCard":{
+        "mouseOverFunction" : false,
+        "dataPreview" : false
+      }
+    
+      }
+  

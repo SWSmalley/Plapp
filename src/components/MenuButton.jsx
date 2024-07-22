@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function MenuButton({content}) {
+export default function MenuButton({content,pathLink,...props}) {
   return (
-    <div className='text-green-800 bg-white px-3 m-3'>{content}</div>
+    <Link to = {pathLink}>
+    <div className='text-green-800 bg-white px-3 font-extrabold w-32 text-center align-middle' {...props}>{content}</div>
+    </Link>
   )
 }

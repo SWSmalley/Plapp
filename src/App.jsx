@@ -1,44 +1,45 @@
-import { useState } from 'react'
-import ReactDOM from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import CardContainer from './components/CardContainer.jsx'
+import { Routes, Route } from "react-router-dom"
+
 import PageHeader from './components/PageHeader.jsx'
 import GalleryPage from './components/GalleryPage.jsx'
-import galleryData from './assets/flowerProfileData/PlantProfiles.json'
-import MenuBar from './components/MenuBar.jsx'
+import flowerData from './assets/flowerProfileData/PlantProfiles.json'
 import WeatherPage from './components/WeatherPage.jsx'
 import AboutPage from './components/AboutPage.jsx'
+import { createContext } from "react"
+export const PagesContext = createContext();
 
-let PageContentList = { 
-      "flowerGallery" :
-      {
-        "Tag":<GalleryPage galleryData={galleryData}/>,
-        "Name": "Catalogue"
+
+const PageContentList = [{
+        "Path":"/",
+        "Name": "CATALOGUE"
       },
-    "WeatherPage":
+
       {
-      "Tag": <WeatherPage />,
-      "Name" : "Weather"
+      "Path": "/Weather",
+      "Name" : "WEATHER"
       },
-    "AboutPage":
+
       {
-        "Tag":<AboutPage />,
-        "Name": "About"
+        "Path":"/About",
+        "Name": "ABOUT"
       }
-    }
-
+]
 
 
 
 function App() {
-  const [currentPage,setCurrentPage] = useState(PageContentList.flowerGallery)
 
-  return (<div className="bg-[url('./src/assets/graphics/leaf-pattern-seamless-background.jpg')] pb-5">
-    <PageHeader />
-    <MenuBar menuItems = {PageContentList}/>
-
-    {currentPage.Tag}
+  return (<div className="bg-[url('./src/assets/graphics/leaf-pattern-seamless-background-half-size.jpg')] pb-5 min-h-screen bg-repeat">
+    <PagesContext.Provider value = {PageContentList}>
+      <PageHeader />
+      
+      <Routes>
+         <Route path = "/" element = {<GalleryPage galleryData={flowerData} />} />
+         <Route path = "/Weather" element = {<WeatherPage />} />
+        <Route path = "/About" element = {<AboutPage />} />
+      </Routes>
+    </PagesContext.Provider>
     </ div>
   )
 }
