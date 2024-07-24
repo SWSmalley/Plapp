@@ -10,7 +10,7 @@ export default function MenuBar() {
     buttons.push(<MenuButton key ={i} content ={PageContentList[i].Name} pathLink = { PageContentList[i].Path}/>)
   }
   return (
-   <div className='flex flex-row flex-nowrap gap-1'>
+   <div className='flex flex-row flex-nowrap gap-1 p-2'>
     {buttons}
    </div>
   )

@@ -52,9 +52,11 @@ function filterTypeUpdate(newValue){
   return (
     <PageRunner>
 
-    <FilterControls applyingTextFilter = {filterCards} filterOptions={["Title","Breed"]} applyingFilterOptions = {filterTypeUpdate}/>
+      <FilterControls applyingTextFilter = {filterCards} filterOptions={["Title","Breed"]} applyingFilterOptions = {filterTypeUpdate}/>
 
-    <CardContainer cards = {cards}/>
+      <CardContainer>
+        {cards}
+      </CardContainer>
     </PageRunner>
   )
 }

@@ -19,7 +19,7 @@ export default function RainApi() {
 useEffect(()=>{   getWeatherForecast()},[]) // this calls getweatherforecast on the initial render
 // it calls it again when the props within [] change.... there are non so only on the initial render
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center gap-5'>
     <Title className = "text-3xl text-green-800"content= { "Weekly Rain Forecast"} />
     <Plot className = "border-green-800 border-4"data = {[
         {
