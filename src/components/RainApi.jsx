@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Plot from 'react-plotly.js';
-import Title from './Title';
 
 export default function RainApi() {
     const [forecast,setForecast] = useState({"latitude":53.66,"longitude":-2.6200001,"generationtime_ms":0.04494190216064453,"utc_offset_seconds":0,"timezone":"GMT","timezone_abbreviation":"GMT","elevation":105.0,"daily_units":{"time":"iso8601","precipitation_probability_max":"%"},"daily":{"time":["today","+1","+2","+3","+4","+5","+6"],"precipitation_probability_max":[0,0,0,0,0,0,0]}})
@@ -20,7 +19,7 @@ useEffect(()=>{   getWeatherForecast()},[]) // this calls getweatherforecast on 
 // it calls it again when the props within [] change.... there are non so only on the initial render
   return (
     <div className='flex flex-col items-center justify-center gap-5'>
-    <Title className = "text-3xl text-green-800"content= { "Weekly Rain Forecast"} />
+
     <Plot className = "border-green-800 border-4"data = {[
         {
             x: ["today","+1","+2","+3","+4","+5","+6"],

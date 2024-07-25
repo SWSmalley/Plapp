@@ -3,6 +3,7 @@ import CardContainer from './CardContainer'
 import Card from './Card.jsx'
 import FilterControls from './FilterControls.jsx'
 import PageRunner from './PageRunner.jsx'
+import Title from './Title.jsx'
 ///this is intended to hold a filter and a container
 
 
@@ -51,7 +52,7 @@ function filterTypeUpdate(newValue){
 // filter controls can call the filter cards function and will pass it a new filter value
   return (
     <PageRunner>
-
+      <Title className = "text-3xl text-green-800 p-2"content= { "Browse Your Plant Profiles"} />
       <FilterControls applyingTextFilter = {filterCards} filterOptions={["Title","Breed"]} applyingFilterOptions = {filterTypeUpdate}/>
 
       <CardContainer>

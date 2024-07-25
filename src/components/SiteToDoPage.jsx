@@ -6,6 +6,7 @@ import TextInput from './TextInput'
 import SubmitButton from './SubmitButton'
 import Title from './Title'
 import SubTitle from './SubTitle'
+import DeleteButton from './DeleteButton'
 
 export default function SiteToDoPage() {
 
@@ -15,19 +16,19 @@ export default function SiteToDoPage() {
     e.preventDefault()
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
-    let isUnique = true
-    taskList.map(task => { if(task.taskTitle == data.taskTitle){
-      isUnique=false}})      
-  
-      if(data.taskTitle != "" && isUnique) {
-      setTaskList([...taskList,data])//form data object using values passed as inputID as keys
+    let titleIsUnique = true
+    taskList.map(task => { if(task.taskTitle == data.taskTitle){ // we loop through each task and check the titles are unique or not
+      titleIsUnique=false}}
+    )      
+      if(data.taskTitle != "" && titleIsUnique) { // check stops muppets entering the same task twice
+      setTaskList([...taskList,data]) // we deconstruct the tasklist array and add a new entry using the input form data
       console.log("updated task list")
     }
     console.log(taskList)
   }
   const taskDone = (e) => {
     console.log(e.target.tagName)
-    if (e.target.tagName == "P"){
+    if (e.target.tagName == "BUTTON"){
     const filteredTaskList = taskList.filter(data => data.taskTitle != e.currentTarget.id)
     console.log(e.currentTarget, "= deletion key")
     setTaskList(filteredTaskList)
@@ -41,7 +42,7 @@ export default function SiteToDoPage() {
       <div className='flex flex-row justify-between items-center w-full text-center'>
         
         <Title content={data.taskTitle} /> 
-        <p className='text-right font-extrabold text-xs text-gray-500'>DELETE</p>
+        <DeleteButton deleteCall = {taskDone}/>
         
       </div>
       <div className='pt-2'>
@@ -52,11 +53,12 @@ export default function SiteToDoPage() {
     
   })
 
-    //// lets return taskCards - each task card contains a Task title that is stored in a coloured header
-    /// the task card has a body - the body contains subtasks
-    //
+    //// we generate task cards -
   return (
     <PageRunner>
+
+      <Title className = "text-3xl text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
+
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle" name description = "New Task Title: " placeholder = "Buy Supplies..." />
         <TextInput inputID = "taskDetails" name description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
@@ -66,6 +68,7 @@ export default function SiteToDoPage() {
       <CardContainer>
       {taskcards}
       </CardContainer>
+
     </PageRunner>
   )
 }
