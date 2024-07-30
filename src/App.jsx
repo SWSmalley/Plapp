@@ -14,12 +14,10 @@ const PageContentList = [{
         "Path":"/",
         "Name": "CATALOGUE"
       },
-
       {
       "Path": "/Weather",
       "Name" : "WEATHER"
       },
-
       {
         "Path":"/About",
         "Name": "ABOUT"
@@ -28,7 +26,6 @@ const PageContentList = [{
         "Path":"/ToDo",
         "Name":"TODO"
       }
-
 ]
 
 

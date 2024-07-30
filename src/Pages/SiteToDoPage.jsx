@@ -27,15 +27,13 @@ export default function SiteToDoPage() {
     }
     console.log(taskList)
   }
-  const taskDone = (e) => {
-    console.log(e.target.tagName)
-    if (e.target.tagName == "BUTTON"){
-    const filteredTaskList = taskList.filter(data => data.taskTitle != e.currentTarget.id)
-    console.log(e.currentTarget, "= deletion key")
+  const taskDelete = (taskToFilter) => {
+    const filteredTaskList = taskList.filter((taskInList) => taskToFilter.taskTitle != taskInList.taskTitle)
     setTaskList(filteredTaskList)
+    console.log("trying to delete task: ",taskToFilter )
     }
 
-  }
+
 
     //// we generate task cards -
   return (
@@ -44,18 +42,18 @@ export default function SiteToDoPage() {
       <Title className = "text-3xl text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
 
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
-        <TextInput inputID = "taskTitle" name description = "New Task Title: " placeholder = "Buy Supplies..." />
-        <TextInput inputID = "taskDetails" name description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
+        <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
+        <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
         <SubmitButton buttonText={"Create New Task"} className='text-white bg-green-800 px-3 font-extrabold w-48 text-center p-1 m-2'/>
       </SmallFormContainer>
 
       <CardContainer>
         {taskList.map((task,index) =>{
           return(
-            <Card key = {index} id = {task.taskTitle} onClick={taskDone}>
+            <Card key = {index} id = {task.taskTitle} >
               <div className='flex flex-row justify-between items-center w-full text-center'>        
                 <Title content={task.taskTitle} /> 
-                <DeleteButton />        
+                <DeleteButton onClick={() =>{taskDelete(task)}}/>        
               </div>
               <div className='pt-2'>
                 <SubTitle content={task.taskDetails} />
