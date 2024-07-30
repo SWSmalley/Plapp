@@ -1,7 +1,7 @@
 import React from 'react'
-import PageRunner from '../PageRunner'
-import ParagraphBox from '../ParagraphBox'
-import Title from '../Title'
+import PageRunner from '../components/PageRunner'
+import ParagraphBox from '../components/ParagraphBox'
+import Title from '../components/Title'
 
 export default function AboutPage() {
   return (

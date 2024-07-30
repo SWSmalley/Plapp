@@ -2,12 +2,11 @@
 import { Routes, Route } from "react-router-dom"
 
 import PageHeader from './components/PageHeader.jsx'
-import GalleryPage from './components/GalleryPage.jsx'
-import flowerData from './assets/flowerProfileData/PlantProfiles.json'
-import WeatherPage from './components/WeatherPage.jsx'
-import AboutPage from './components/AboutPage.jsx'
+import WeatherPage from '../src/Pages/WeatherPage.jsx'
+import AboutPage from '../src/Pages/AboutPage.jsx'
 import { createContext } from "react"
-import SiteToDoPage from "./components/SiteToDoPage.jsx"
+import SiteToDoPage from "../src/Pages/SiteToDoPage.jsx"
+import GalleryPage from "../src/Pages/GalleryPage.jsx"
 export const PagesContext = createContext();
 
 
@@ -41,7 +40,7 @@ function App() {
       <PageHeader />
       
       <Routes>
-         <Route path = "/" element = {<GalleryPage galleryData={flowerData} />} />
+         <Route path = "/" element = {<GalleryPage/>} />
          <Route path = "/Weather" element = {<WeatherPage />} />
         <Route path = "/About" element = {<AboutPage />} />
         <Route path = "/ToDo" element = {<SiteToDoPage />} />

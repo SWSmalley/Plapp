@@ -1,7 +1,7 @@
 import React from 'react'
-import RainApi from '../RainApi'
-import PageRunner from '../PageRunner'
-import Title from '../Title'
+import RainApi from '../components/RainApi'
+import PageRunner from '../components/PageRunner'
+import Title from '../components/Title'
 
 export default function WeatherPage() {
   return (

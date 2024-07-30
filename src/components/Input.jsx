@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Input(type,...props) {
+export default function Input({type,className,...props}) {
   return (
-    <Input type = {type} {...props} />
+    <input type = {type} {...props} className= {`border-black border-2 shadow-inner shadow-slate-500 ${className}`}/>
   )
 }
