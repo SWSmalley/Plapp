@@ -28,7 +28,7 @@ useEffect( () => {
     setCards(galleryData.filter((dataItem)=>{return(dataItem.Title.toLowerCase().includes(defferedFilterText.toLowerCase())||dataItem.Breed.toLowerCase().includes(defferedFilterText.toLowerCase())) }))
   }
 
-},[filterText])
+},[defferedFilterText])
 
 
 

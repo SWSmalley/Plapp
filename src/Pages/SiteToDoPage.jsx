@@ -7,6 +7,7 @@ import SubmitButton from '../components/SubmitButton'
 import Title from '../components/Title'
 import SubTitle from '../components/SubTitle'
 import DeleteButton from '../components/DeleteButton'
+import Card from '../components/Card'
 
 export default function SiteToDoPage() {
 
@@ -36,23 +37,6 @@ export default function SiteToDoPage() {
 
   }
 
-  const taskcards = taskList.map((data,index) => {
-    return(
-    <div key = {index} id = {data.taskTitle} onClick={taskDone} className="flex flex-col w-64 h-36 bg-plantcolor rounded-lg items-start p-5">
-      <div className='flex flex-row justify-between items-center w-full text-center'>
-        
-        <Title content={data.taskTitle} /> 
-        <DeleteButton deleteCall = {taskDone}/>
-        
-      </div>
-      <div className='pt-2'>
-        <SubTitle content={data.taskDetails} />
-      </div>
-      
-    </div>)
-    
-  })
-
     //// we generate task cards -
   return (
     <PageRunner>
@@ -66,7 +50,20 @@ export default function SiteToDoPage() {
       </SmallFormContainer>
 
       <CardContainer>
-      {taskcards}
+        {taskList.map((task,index) =>{
+          return(
+            <Card key = {index} id = {task.taskTitle} onClick={taskDone}>
+              <div className='flex flex-row justify-between items-center w-full text-center'>        
+                <Title content={task.taskTitle} /> 
+                <DeleteButton />        
+              </div>
+              <div className='pt-2'>
+                <SubTitle content={task.taskDetails} />
+               </div>
+            </Card>
+            
+          )
+        } )}
       </CardContainer>
 
     </PageRunner>

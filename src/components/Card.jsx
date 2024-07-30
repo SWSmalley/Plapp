@@ -1,7 +1,5 @@
 import React from 'react'
-import DisplayPic from './DisplayPic.jsx'
-import Title from './Title.jsx'
-import FlowerNameAndDescription from './FlowerNameAndDescription.jsx'
+
 
 
 export default function Card({children}) {
