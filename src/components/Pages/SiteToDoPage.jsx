@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import PageRunner from './PageRunner'
-import CardContainer from './CardContainer'
-import SmallFormContainer from './SmallFormContainer'
-import TextInput from './TextInput'
-import SubmitButton from './SubmitButton'
-import Title from './Title'
-import SubTitle from './SubTitle'
-import DeleteButton from './DeleteButton'
+import PageRunner from '../PageRunner'
+import CardContainer from '../CardContainer'
+import SmallFormContainer from '../SmallFormContainer'
+import TextInput from '../TextInput'
+import SubmitButton from '../SubmitButton'
+import Title from '../Title'
+import SubTitle from '../SubTitle'
+import DeleteButton from '../DeleteButton'
 
 export default function SiteToDoPage() {
 
