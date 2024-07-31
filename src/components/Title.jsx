@@ -1,8 +1,13 @@
 import React from 'react'
 
-export default function Title({content,className,...props}) {
+export default function Title({variant = "secondary",content,className,...props}) {
+  const variants ={
+    "primary" : "font-extrabold justify-center text-white text-6xl",
+    "secondary" : "font-extrabold justify-center text-2xl",
+    "subTitle" : "text-center italic "
+  }
   return (
-    <h1 className= {` font-extrabold justify-center ${className}`}{...props}>{content}</h1>
+    <h2 className= {` ${variants[variant]} ${className}`}{...props}>{content}</h2>
   )
 }
 

@@ -10,7 +10,6 @@ export default function RainApi() {
         .then(res => res.json())
             .then(data => {
                 setForecast(data)
-                console.log(data)
                 barColours = data.daily.precipitation_probability_max.map(value =>(value > 55 ? '#80EAFF' : '#990000'))
             })
             

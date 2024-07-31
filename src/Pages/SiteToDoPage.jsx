@@ -3,10 +3,8 @@ import PageRunner from '../components/PageRunner'
 import CardContainer from '../components/CardContainer'
 import SmallFormContainer from '../components/SmallFormContainer'
 import TextInput from '../components/TextInput'
-import SubmitButton from '../components/SubmitButton'
 import Title from '../components/Title'
-import SubTitle from '../components/SubTitle'
-import DeleteButton from '../components/DeleteButton'
+import Button from '../components/Button'
 import Card from '../components/Card'
 
 export default function SiteToDoPage() {
@@ -23,14 +21,12 @@ export default function SiteToDoPage() {
     )      
       if(data.taskTitle != "" && titleIsUnique) { // check stops muppets entering the same task twice
       setTaskList([...taskList,data]) // we deconstruct the tasklist array and add a new entry using the input form data
-      console.log("updated task list")
     }
-    console.log(taskList)
+
   }
   const taskDelete = (taskToFilter) => {
     const filteredTaskList = taskList.filter((taskInList) => taskToFilter.taskTitle != taskInList.taskTitle)
     setTaskList(filteredTaskList)
-    console.log("trying to delete task: ",taskToFilter )
     }
 
 
@@ -44,19 +40,19 @@ export default function SiteToDoPage() {
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
         <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
-        <SubmitButton buttonText={"Create New Task"} className='text-white bg-green-800 px-3 font-extrabold w-48 text-center p-1 m-2'/>
+        <Button variant = "primary"content={"Create New Task"} type = "submit"/>
       </SmallFormContainer>
 
       <CardContainer>
         {taskList.map((task,index) =>{
           return(
             <Card key = {index} id = {task.taskTitle} >
-              <div className='flex flex-row justify-between items-center w-full text-center'>        
+              <div className='flex flex-row justify-between items-center w-full text-center p-2' >        
                 <Title content={task.taskTitle} /> 
-                <DeleteButton onClick={() =>{taskDelete(task)}}/>        
+                <Button  variant = "ghost" onClick={() =>{taskDelete(task)}} content={"DELETE"} />        
               </div>
               <div className='pt-2'>
-                <SubTitle content={task.taskDetails} />
+                <Title variant='subTitle' content={task.taskDetails} />
                </div>
             </Card>
             

@@ -6,7 +6,7 @@ import Title from '../components/Title'
 export default function WeatherPage() {
   return (
     <PageRunner>
-        <Title className = "text-3xl text-green-800 p-2"content= { "Weekly Rain Forecast"} />
+        <Title variant='secondary' className = " text-green-800 p-2"content= { "Weekly Rain Forecast"} />
         <RainApi />
     </PageRunner>
   )

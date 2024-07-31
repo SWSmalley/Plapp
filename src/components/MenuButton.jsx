@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 
-export default function MenuButton({content,pathLink,...props}) {
+export default function MenuButton({content,pathLink}) {
   return (
     <Link to = {pathLink}>
-    <div className='text-green-800 bg-white px-3 font-extrabold w-32 text-center align-middle' {...props}>{content}</div>
+    <Button variant = {"secondary"}content = {content} ></Button>
     </Link>
   )
 }
