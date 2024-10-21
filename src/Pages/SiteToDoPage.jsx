@@ -13,6 +13,7 @@ export default function SiteToDoPage() {
   const [taskList,setTaskList] = useState([])
 
   const taskTitleSubmitted = (e) => {
+    console.log(e)
     e.preventDefault()
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
@@ -30,8 +31,28 @@ export default function SiteToDoPage() {
     setTaskList(filteredTaskList)
     }
 
+const testTaskList = (taskList) =>{
 
+  let testData =  
+    {
+    "taskTitle" : "test 1",
+    "taskDetails" : "Details 1",
+    "priority" : "P2",
+  }
+  let titleElement = document.getElementById("taskTitle");
+  titleElement.value = testData.taskTitle;
+  let detailsElement = document.getElementById("taskDetails");
+  detailsElement.value = testData.taskDetails;
+  const radioButtons = document.getElementsByName('priority');
+  for (let i = 0; i < radioButtons.length; i++) {
+  if (radioButtons[i].id === testData.priority) {
+    radioButtons[i].checked = true; 
+    break; 
+  }
 
+//taskTitleSubmitted(testForm)
+
+}}
     //// we generate task cards -
   return (
     <PageRunner>
@@ -61,7 +82,7 @@ export default function SiteToDoPage() {
           )
         } )}
       </CardContainer>
-        <Button variant='primary' content={"run tests"} onClick={}>
+        <Button variant='primary' content={"run tests"} onClick={() =>{testTaskList(taskList)}}/>
     </PageRunner>
   )
 }
