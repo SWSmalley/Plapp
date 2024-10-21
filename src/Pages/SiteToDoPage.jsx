@@ -31,7 +31,9 @@ export default function SiteToDoPage() {
     setTaskList(filteredTaskList)
     }
 
-const testTaskList = (taskList) =>{
+const testTaskList = (taskList) =>{ /// this function is execute when the test button is hit
+  //we populate the fields with testdata by looking up the fields by their element id's or name in the case of the radio button
+  // we set the values to match testData and then simulate the submit button being clicked on the form triggering the form submission event handler we have defined
 
   let testData =  
     {
@@ -45,25 +47,25 @@ const testTaskList = (taskList) =>{
   detailsElement.value = testData.taskDetails;
   const radioButtons = document.getElementsByName('priority');
   for (let i = 0; i < radioButtons.length; i++) {
-  if (radioButtons[i].id === testData.priority) {
-    radioButtons[i].checked = true; 
-    break; 
+    if (radioButtons[i].id === testData.priority) {
+      radioButtons[i].checked = true; 
+      break; 
+    }
   }
-
-//taskTitleSubmitted(testForm)
-
-}}
+  const submitButton = document.getElementById("taskSubmit")
+  submitButton.click()
+}
     //// we generate task cards -
   return (
     <PageRunner>
 
       <Title className = "text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
 
-      <SmallFormContainer onSubmit={taskTitleSubmitted}>
+      <SmallFormContainer id = "taskform" onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
         <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
         <PriorityButtons />
-        <Button variant = "primary"content={"Create New Task"} type = "submit"/>
+        <Button id = "taskSubmit" variant = "primary"content={"Create New Task"} type = "submit"/>
       </SmallFormContainer>
 
       <CardContainer>
@@ -82,7 +84,8 @@ const testTaskList = (taskList) =>{
           )
         } )}
       </CardContainer>
-        <Button variant='primary' content={"run tests"} onClick={() =>{testTaskList(taskList)}}/>
+        <Button variant='primary' content={"Run Tests"} onClick={() =>{testTaskList(taskList)}}/>
+        <div>This button populates the task fields and submits it at priority 2</div>
     </PageRunner>
   )
 }
