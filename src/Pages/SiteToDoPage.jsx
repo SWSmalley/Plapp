@@ -6,6 +6,7 @@ import TextInput from '../components/TextInput'
 import Title from '../components/Title'
 import Button from '../components/Button'
 import Card from '../components/Card'
+import PriorityButtons from '../components/PriorityButtons'
 
 export default function SiteToDoPage() {
 
@@ -40,6 +41,7 @@ export default function SiteToDoPage() {
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
         <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
+        <PriorityButtons />
         <Button variant = "primary"content={"Create New Task"} type = "submit"/>
       </SmallFormContainer>
 
