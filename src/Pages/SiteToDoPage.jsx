@@ -35,7 +35,7 @@ export default function SiteToDoPage() {
   return (
     <PageRunner>
 
-      <Title className = "text-3xl text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
+      <Title className = "text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
 
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
