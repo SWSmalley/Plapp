@@ -28,8 +28,20 @@ export default function SiteToDoPage() {
     const filteredTaskList = taskList.filter((taskInList) => taskToFilter.taskTitle != taskInList.taskTitle)
     setTaskList(filteredTaskList)
     }
+//we add a task in progress button - it can switch to green and back 
+  const taskInProgress = (task) => {
 
+    const updatedTasks = taskList.map((t) =>
+      t.taskTitle === task.taskTitle
+        ? { ...t, status: t.status === 'In Progress' ? 'Pending' : 'In Progress' }
+        : t
+    );
+  
+    setTaskList(updatedTasks);
+  };
 
+    
+    
 
     //// we generate task cards -
   return (
@@ -40,25 +52,36 @@ export default function SiteToDoPage() {
       <SmallFormContainer onSubmit={taskTitleSubmitted}>
         <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
         <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
+
         <Button variant = "primary"content={"Create New Task"} type = "submit"/>
       </SmallFormContainer>
 
       <CardContainer>
-        {taskList.map((task,index) =>{
-          return(
-            <Card key = {index} id = {task.taskTitle} >
-              <div className='flex flex-row justify-between items-center w-full text-center p-2' >        
-                <Title content={task.taskTitle} /> 
-                <Button  variant = "ghost" onClick={() =>{taskDelete(task)}} content={"DELETE"} />        
-              </div>
-              <div className='pt-2'>
-                <Title variant='subTitle' content={task.taskDetails} />
-               </div>
-            </Card>
-            
-          )
-        } )}
-      </CardContainer>
+  {taskList.map((task, index) => {
+    return (
+      <Card key={index} id={task.taskTitle}>
+        <div className='flex flex-row justify-between items-center w-full text-center p-2'>
+          <Title content={task.taskTitle} />
+          <Button
+            variant="ghost"
+            onClick={() => taskInProgress(task)} 
+            content={"IN PROGRESS"}
+            style={{ color: task.status === 'In Progress' ? 'green' : 'black' }} 
+          />
+          <Button
+            variant="ghost"
+            onClick={() => taskDelete(task)} 
+            content={"DELETE"}
+          />
+        </div>
+        <div className='pt-2'>
+          <Title variant='subTitle' content={task.taskDetails} />
+        </div>
+      </Card>
+    );
+  })}
+</CardContainer>
+
 
     </PageRunner>
   )
