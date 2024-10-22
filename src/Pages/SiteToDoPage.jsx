@@ -71,62 +71,50 @@ const testTaskList = (taskList) =>{ /// this function is execute when the test b
     
 
     //// we generate task cards -
-  return (
-    <PageRunner>
+return (
+  <PageRunner>
 
-      <Title className = "text-green-800 p-2"content= "Things You Should Stop Ignoring!" />
+    {/* Page Title */}
+    <Title className="text-green-800 p-2" content="Things You Should Stop Ignoring!" />
 
-      <SmallFormContainer id = "taskform" onSubmit={taskTitleSubmitted}>
-        <TextInput inputID = "taskTitle"  description = "New Task Title: " placeholder = "Buy Supplies..." />
-        <TextInput inputID = "taskDetails"  description = "New Task Details: " placeholder = "compost, seeds, watering can..." />
-        <PriorityButtons />
-        <Button id = "taskSubmit" variant = "primary"content={"Create New Task"} type = "submit"/>
-      </SmallFormContainer>
+    {/* Form to Add a New Task */}
+    <SmallFormContainer id="taskform" onSubmit={taskTitleSubmitted}>
+      <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
+      <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
+      <PriorityButtons />
+      <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
+    </SmallFormContainer>
 
-      <CardContainer>
-        {taskList.map((task,index) =>{
-          return(
-            <Card key = {index} id = {task.taskTitle} >
-              <div className='flex flex-row justify-between items-center w-full text-center p-2' >        
-                <Title content={task.taskTitle} /> 
-                <Button  variant = "ghost" onClick={() =>{taskDelete(task)}} content={"DELETE"} />        
-              </div>
-              <div className='pt-2'>
-                <Title variant='subTitle' content={task.taskDetails} />
-               </div>
-            </Card>
-            
-          )
-        } )}
-      </CardContainer>
-        <Button variant='primary' content={"Run Tests"} onClick={() =>{testTaskList(taskList)}}/>
-        <div>This button populates the task fields and submits it at priority 2</div>
-  {taskList.map((task, index) => {
-    return (
-      <Card key={index} id={task.taskTitle}>
-        <div className='flex flex-row justify-between items-center w-full text-center p-2'>
-          <Title content={task.taskTitle} />
-          <Button
-            variant="ghost"
-            onClick={() => taskInProgress(task)} 
-            content={"IN PROGRESS"}
-            style={{ color: task.status === 'In Progress' ? 'green' : 'black' }} 
-          />
-          <Button
-            variant="ghost"
-            onClick={() => taskDelete(task)} 
-            content={"DELETE"}
-          />
-        </div>
-        <div className='pt-2'>
-          <Title variant='subTitle' content={task.taskDetails} />
-        </div>
-      </Card>
-    );
-  })}
-</CardContainer>
+    {/* Task List Display */}
+    <CardContainer>
+      {taskList.map((task, index) => {
+        return (
+          <Card key={index} id={task.taskTitle}>
+            <div className='flex flex-row justify-between items-center w-full text-center p-2'>
+              <Title content={task.taskTitle} />
+              <Button
+                variant="ghost"
+                onClick={() => taskInProgress(task)}
+                content={"IN PROGRESS"}
+                style={{ color: task.status === 'In Progress' ? 'green' : 'black' }} // Button color based on task status
+              />
+              <Button
+                variant="ghost"
+                onClick={() => taskDelete(task)}
+                content={"DELETE"}
+              />
+            </div>
+            <div className='pt-2'>
+              <Title variant='subTitle' content={task.taskDetails} />
+            </div>
+          </Card>
+        );
+      })}
+    </CardContainer>
 
+    {/* Run Tests Button */}
+    <Button variant='primary' content={"Run Tests"} onClick={() => { testTaskList(taskList) }} />
+    <div>This button populates the task fields and submits it at priority 2</div>
 
-    </PageRunner>
-  )
-}
+  </PageRunner>
+)}
