@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function SmallFormContainer({ children, onSubmit }) {
+export default function SmallFormContainer({ children, onSubmit, id }) {
   return (
-    <form className='flex flex-col flex-nowrap items-center m-auto' onSubmit={onSubmit}>
+    <form id = {id}className='flex flex-col flex-nowrap items-center m-auto' onSubmit={onSubmit}>
         {children}
     </form>
   )
