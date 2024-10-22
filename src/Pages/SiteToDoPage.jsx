@@ -11,6 +11,7 @@ import PriorityButtons from '../components/PriorityButtons'
 export default function SiteToDoPage() {
 
   const [taskList,setTaskList] = useState([])
+  const [priority, setPriority] = useState(""); //Setting priority variable - MT
 
   const taskTitleSubmitted = (e) => {
     console.log(e)
@@ -22,7 +23,8 @@ export default function SiteToDoPage() {
       titleIsUnique=false}}
     )      
       if(data.taskTitle != "" && titleIsUnique) { // check stops muppets entering the same task twice
-      setTaskList([...taskList,data]) // we deconstruct the tasklist array and add a new entry using the input form data
+        data.priority = priority; // Add the selected priority directly to the form data - MT
+      setTaskList([...taskList,data ]) // we deconstruct the tasklist array and add a new entry using the input form data
     }
 
   }
@@ -92,7 +94,7 @@ return (
     <SmallFormContainer id="taskform" onSubmit={taskTitleSubmitted}>
       <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
       <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
-      <PriorityButtons />
+      <PriorityButtons onPriorityChange={(value) => setPriority(value)}/>
       <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
     </SmallFormContainer>
 
@@ -133,6 +135,9 @@ return (
 
               <div className='pt-2'>
                 <Title variant='subTitle' content={task.taskDetails} />
+              </div>
+              <div className="pt-2">
+                  <Title className='font-light text-sm' variant="subTitle" content={`Priority: ${task.priority}` } /> {/* Display Priority in Card Container- MT*/}
               </div>
             </div>            
           </Card>
