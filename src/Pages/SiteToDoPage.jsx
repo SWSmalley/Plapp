@@ -26,10 +26,22 @@ export default function SiteToDoPage() {
     }
 
   }
-  const taskDelete = (taskToFilter) => {
-    const filteredTaskList = taskList.filter((taskInList) => taskToFilter.taskTitle != taskInList.taskTitle)
-    setTaskList(filteredTaskList)
-    }
+
+  //added complete button so it counts how many tasks we have done. There is also a function which counts how many tasks we have done. 
+  const taskCompleted = (taskToUpdate) => {
+    const updatedTasks = taskList.map((task) =>
+      task.taskTitle === taskToUpdate.taskTitle
+        ? { ...task, status: 'Completed' }
+        : task
+    );
+    setTaskList(updatedTasks);
+  };
+
+  //apart from complete we can also delete tasks if we don't want them anymore 
+  const taskDelete = (taskToDelete) => {
+    const updatedTaskList = taskList.filter(task => task.taskTitle !== taskToDelete.taskTitle);
+    setTaskList(updatedTaskList);
+  };
 
 const testTaskList = (taskList) =>{ /// this function is execute when the test button is hit
   //we populate the fields with testdata by looking up the fields by their element id's or name in the case of the radio button
@@ -66,18 +78,17 @@ const testTaskList = (taskList) =>{ /// this function is execute when the test b
   
     setTaskList(updatedTasks);
   };
-
-    
-    
+//counts how many tasks we submitted
+  const countCompletedTasks = () => {
+    return taskList.filter(task => task.status === 'Completed').length;
+  };
 
     //// we generate task cards -
 return (
   <PageRunner>
 
-    {/* Page Title */}
     <Title className="text-green-800 p-2" content="Things You Should Stop Ignoring!" />
 
-    {/* Form to Add a New Task */}
     <SmallFormContainer id="taskform" onSubmit={taskTitleSubmitted}>
       <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
       <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
@@ -85,34 +96,50 @@ return (
       <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
     </SmallFormContainer>
 
-    {/* Task List Display */}
-    <CardContainer>
+    <div className="p-4">
+        <p>Completed Tasks: {countCompletedTasks()}</p>
+    </div>
+
+  {/* I've ordered the card container so it displays things hierarchically - status, title, description - one thing under another*/}   
+    <CardContainer> 
       {taskList.map((task, index) => {
         return (
           <Card key={index} id={task.taskTitle}>
-            <div className='flex flex-row justify-between items-center w-full text-center p-2'>
-              <Title content={task.taskTitle} />
-              <Button
-                variant="ghost"
-                onClick={() => taskInProgress(task)}
-                content={"IN PROGRESS"}
-                style={{ color: task.status === 'In Progress' ? 'green' : 'black' }} // Button color based on task status
-              />
-              <Button
-                variant="ghost"
-                onClick={() => taskDelete(task)}
-                content={"DELETE"}
-              />
-            </div>
-            <div className='pt-2'>
-              <Title variant='subTitle' content={task.taskDetails} />
-            </div>
+            <div className='flex flex-col w-full p-2'>
+              <div className='flex flex-row justify-between items-center'>
+                <Button
+                  variant="ghost"
+                  onClick={() => taskInProgress(task)}
+                  content={"IN PROGRESS"}
+                  style={{ color: task.status === 'In Progress' ? 'green' : 'black' }} 
+                />
+                <Button
+                  variant="ghost"
+                  onClick={() => taskCompleted(task)} 
+                  content={"COMPLETED"}
+                  style={{ color: task.status === 'Completed' ? 'green' : 'black' }} 
+                />
+                <Button
+                  variant="ghost"
+                  onClick={() => taskDelete(task)} 
+                  content={"DELETE"}
+                  style={{ color: 'orange' }} 
+                />
+              </div>
+
+              <div className='pt-2'>
+                <Title content={task.taskTitle} />
+              </div>
+
+              <div className='pt-2'>
+                <Title variant='subTitle' content={task.taskDetails} />
+              </div>
+            </div>            
           </Card>
         );
       })}
     </CardContainer>
 
-    {/* Run Tests Button */}
     <Button variant='primary' content={"Run Tests"} onClick={() => { testTaskList(taskList) }} />
     <div>This button populates the task fields and submits it at priority 2</div>
 
