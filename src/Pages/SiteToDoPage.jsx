@@ -89,6 +89,8 @@ const testTaskList = () =>{ /// this function is execute when the test button is
     return taskList.filter(task => task.status === 'Completed').length;
   };
 
+  const [taskDate, setTaskDate] = useState('');
+
     //// we generate task cards -
 return (
   <PageRunner>
@@ -98,6 +100,16 @@ return (
     <SmallFormContainer id="taskform" onSubmit={taskTitleSubmitted}>
       <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
       <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
+      {/*added the date field */}
+      <br></br>
+      <label htmlFor="taskDate">New Task Date:</label>
+      <input
+        id="taskDate"
+        type="date"
+        style={{ direction: 'rtl', textAlign: 'left' }}
+        onChange={(e) => setTaskDate(e.target.value)}
+      />
+      <br></br>
       <PriorityButtons onPriorityChange={(value) => setPriority(value)}/>
       <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
     </SmallFormContainer>
@@ -143,6 +155,12 @@ return (
               <div className="pt-2">
                   <Title className='font-light text-sm' variant="subTitle" content={`Priority: ${task.priority}` } /> {/* Display Priority in Card Container- MT*/}
               </div>
+
+              <div className="pt-2">
+                  <Title className='font-light text-sm' variant="subTitle" content={`Task Date: ${taskDate}` } /> {/* Display the date*/}
+              </div>
+
+
             </div>            
           </Card>
         );
