@@ -101,14 +101,16 @@ return (
       <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
       <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
       {/*added the date field */}
-      <br></br>
-      <label htmlFor="taskDate">New Task Date:</label>
-      <input
-        id="taskDate"
-        type="date"
-        style={{ direction: 'rtl', textAlign: 'left' }}
-        onChange={(e) => setTaskDate(e.target.value)}
-      />
+      <div className="flex justify-between items-center w-full">
+        <label htmlFor="taskDate" className="mr-4">New Task Date:</label>
+        <input
+          id="taskDate"
+          type="date"
+          className="w-1/2 p-0.5 border border-black text-left placeholder:text-gray-400"
+          placeholder="dd/mm/yyyy"
+          onChange={(e) => setTaskDate(e.target.value)}
+        />
+      </div>
       <br></br>
       <PriorityButtons onPriorityChange={(value) => setPriority(value)}/>
       <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
