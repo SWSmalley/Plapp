@@ -11,19 +11,26 @@ import PriorityButtons from '../components/PriorityButtons'
 export default function SiteToDoPage() {
 
   const [taskList,setTaskList] = useState([])
-  const [priority, setPriority] = useState(""); //Setting priority variable - MT
+ /// const [priority, setPriority] = useState(""); //Setting priority variable - MT No longer needed - simon
 
   const taskTitleSubmitted = (e) => {
-    console.log(e)
+    
     e.preventDefault()
     const formData = new FormData(e.target)
+    console.log(e, " = event ")
+    
+
     const data = Object.fromEntries(formData.entries())
+    const checkedRadio = document.querySelector('input[name="priority"]:checked');
+    data.priority = checkedRadio.id
+    console.log(data, "= data for debugging")
     let titleIsUnique = true
     taskList.map(task => { if(task.taskTitle == data.taskTitle){ // we loop through each task and check the titles are unique or not
       titleIsUnique=false}}
     )      
       if(data.taskTitle != "" && titleIsUnique) { // check stops muppets entering the same task twice
-        data.priority = priority; // Add the selected priority directly to the form data - MT
+  
+        console.log("debug submitted priority value == ", data.priority) //= priority; // Add the selected priority directly to the form data - MT
       setTaskList([...taskList,data ]) // we deconstruct the tasklist array and add a new entry using the input form data
     }
 
@@ -98,7 +105,7 @@ return (
     <SmallFormContainer id="taskform" onSubmit={taskTitleSubmitted}>
       <TextInput inputID="taskTitle" description="New Task Title: " placeholder="Buy Supplies..." />
       <TextInput inputID="taskDetails" description="New Task Details: " placeholder="compost, seeds, watering can..." />
-      <PriorityButtons onPriorityChange={(value) => setPriority(value)}/>
+      <PriorityButtons  />
       <Button id="taskSubmit" variant="primary" content={"Create New Task"} type="submit" />
     </SmallFormContainer>
 
