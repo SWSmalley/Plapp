@@ -60,9 +60,13 @@ const testTaskList = () =>{ /// this function is execute when the test button is
   let detailsElement = document.getElementById("taskDetails");
   detailsElement.value = testData.taskDetails;
   const radioButtons = document.getElementsByName('priority');
+  console.log(radioButtons)
   for (let i = 0; i < radioButtons.length; i++) {
+    console.log(radioButtons[i].id, " = radio button id, ",testData.priority,  " = testdata priority" )
     if (radioButtons[i].id === testData.priority) {
-      radioButtons[i].checked = true; 
+     // radioButtons[i].click(); //// thisdoesnt work anymore because the priority button component relies on the react event handler onchange to register user input and update a state.
+      radioButtons[i].onChange=true; 
+      console.log("button checked")
       break; 
     }
   }
