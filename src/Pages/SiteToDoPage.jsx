@@ -91,6 +91,16 @@ const testTaskList = () =>{ /// this function is execute when the test button is
 
   const [taskDate, setTaskDate] = useState('');
 
+    // Define a function that returns the background color based on priority
+    const getBackgroundColor = (priority) => {
+      switch (priority) {
+        case 'P1': return 'red'; // High priority
+        case 'P2': return 'yellow'; // Medium priority
+        case 'P3': return 'green'; // Low priority
+        default: return 'plantcolor'; // Default color
+      }
+    };
+
     //// we generate task cards -
 return (
   <PageRunner>
@@ -124,7 +134,7 @@ return (
     <CardContainer> 
       {taskList.map((task, index) => {
         return (
-          <Card key={index} id={task.taskTitle}>
+          <Card key={index} id={task.taskTitle} style={{ backgroundColor: getBackgroundColor(task.priority) }}>
             <div className='flex flex-col w-full p-2'>
               <div className='flex flex-row justify-between items-center'>
                 <Button

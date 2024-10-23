@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       colors:{
-        'plantcolor': '#e4f4d9'
+        'plantcolor': '#e4f4d9',
+        'cardred': '#cc5656',
+        'cardyellow':'#cacc5c',
+        'cardgreen':'#65cc5c'
       }
     },
   },
