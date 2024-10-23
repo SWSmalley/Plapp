@@ -31,7 +31,7 @@ export default function SiteToDoPage() {
     setTaskList(filteredTaskList)
     }
 
-const testTaskList = (taskList) =>{ /// this function is execute when the test button is hit
+const testTaskList = () =>{ /// this function is execute when the test button is hit
   //we populate the fields with testdata by looking up the fields by their element id's or name in the case of the radio button
   // we set the values to match testData and then simulate the submit button being clicked on the form triggering the form submission event handler we have defined
 
@@ -84,7 +84,7 @@ const testTaskList = (taskList) =>{ /// this function is execute when the test b
           )
         } )}
       </CardContainer>
-        <Button variant='primary' content={"Run Tests"} onClick={() =>{testTaskList(taskList)}}/>
+        <Button variant='primary' content={"Run Tests"} onClick={testTaskList()}/>
         <div>This button populates the task fields and submits it at priority 2</div>
     </PageRunner>
   )
